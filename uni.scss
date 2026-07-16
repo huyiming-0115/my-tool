@@ -1,0 +1,34 @@
+/* 全局样式变量 */
+$primary-color: #4a6cf7;
+$secondary-color: #7c3aed;
+$success-color: #10b981;
+$warning-color: #f59e0b;
+$danger-color: #ef4444;
+$text-primary: #333333;
+$text-secondary: #666666;
+$text-muted: #999999;
+$bg-color: #f5f7fb;
+$card-bg: #ffffff;
+$border-radius: 24rpx;
+$gradient-primary: linear-gradient(135deg, $primary-color 0%, $secondary-color 100%);
+
+/* 公共类 */
+.flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-shadow {
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.gradient-bg {
+  background: $gradient-primary;
+}
+
+.text-gradient {
+  background: $gradient-primary;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
