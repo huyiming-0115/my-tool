@@ -1,0 +1,490 @@
+ {
+  if (!currentPlan.value || !currentPlan.value.contentMarkdown) return []
+  return parseMarkdown(currentPlan.value.contentMarkdown).nodes
+})
+
+const statusText = (s) => ({ planning: "规划中", ongoing: "进行中", completed: "已完成" }[s] || s)
+
+// ========== 模板 ==========
+const templateList = [
+  {
+    title: "云南大理-丽江-香格里拉",
+    destination: "云南",
+    startDate: "2026-08-15",
+    endDate: "2026-08-22",
+    budget: "6800",
+    status: "planning",
+    notes: "环洱海骑行、玉龙雪山",
+    markdown: `# 云南大理-丽江-香格里拉 · 7日深度游
+> 风花雪月，彩云之南
+
+---
+
+## 行程总览
+
+**出行人数：** 4人
+**总预算：** ¥6800/人
+**最佳季节：** 8 月雨季末期
+
+---
+
+## 每日行程
+
+### D1 — 抵达大理
+
+- 14:00 抵达大理凤仪机场
+- 16:00 入住洱海边海景客栈
+- 18:00 古城晚餐：**过桥米线、烤乳扇**
+
+### D2 — 洱海一日游
+
+- 🚴 环洱海骑行，途径才村、喜洲
+- 📸 喜洲古镇白族建筑打卡
+- 🍵 下午茶体验三道茶表演
+
+### D3 — 大理古城漫游
+
+- 🛤️ 漫步人民路、洋人街
+- 🌸 苍山感通索道赏花
+- 🍲 晚餐品尝砂锅鱼
+
+### D4 — 前往丽江
+
+- 🚌 乘动车前往丽江（约 2 小时）
+- 🏘️ 入住丽江古城纳西庭院
+- 🌙 夜游四方街
+
+### D5 — 玉龙雪山
+
+- 🏔️ 冰川公园大索道
+- 🌲 蓝月谷漫步
+- 🍖 晚餐：腊排骨火锅
+
+### D6 — 香格里拉
+
+- 🚗 途经虎跳峡
+- 🏯 独克宗古城转经筒
+- 🏨 入住藏式酒店
+
+### D7 — 普达措国家公园
+
+- 🌲 普达措原始森林
+- 🗓️ 下午返回昆明，结束行程
+
+> 💡 温馨提示：高原地区记得备红景天，多喝温水，忌剧烈运动。
+
+*愿旅途愉快！*`,
+  },
+  {
+    title: "日本东京-京都-大阪",
+    destination: "日本",
+    startDate: "2026-10-01",
+    endDate: "2026-10-08",
+    budget: "12000",
+    status: "planning",
+    notes: "富士山、清水寺、环球影城",
+    markdown: `# 🇯🇵 日本东京-京都-大阪 · 8日秋季之旅
+> 霓虹秋色，古今交错
+
+---
+
+## 行程总览
+
+**出行人数：** 2人
+**总预算：** ¥12000/人
+**特色主题：** 富士红叶、动漫巡礼、关西美食
+
+---
+
+## 关东篇
+
+### D1 — 抵达东京
+
+- 13:00 降落成田机场
+- 🚇 搭乘 Skyliner 前往市区
+- 🏨 入住新宿歌舞伎町附近酒店
+
+### D2 — 东京经典
+
+- 1️⃣ 浅草寺雷门
+- 2️⃣ 晴空塔购物
+- 3️⃣ 秋叶原动漫街
+- 🍣 晚餐：筑地市场寿司
+
+### D3 — 富士山一日游
+
+- 🗻 河口湖红叶回廊
+- 📸 浅间公园五重塔构图
+- 🍜 吉田乌冬面
+
+---
+
+## 关西篇
+
+### D4 — 前往京都
+
+- 🚄 乘新干线到京都（2h15m）
+- ⛩️ 伏见稻荷大社千本鸟居
+- 🏡 入住町屋民宿
+
+### D5 — 京都古韵
+
+- 🌉 清水寺二年坂漫步
+- 🍵 宇治抹茶甜品
+- 🎎 茶道体验
+
+### D6 — 前往大阪
+
+- 🚃 前往大阪难波
+- 🎢 日本环球影城 USJ
+- 🌙 道顿堀夜宵：**章鱼烧、大阪烧**
+
+### D7 — 大阪深度
+
+- 🏰 大阪城天守阁
+- 🚢 道顿堀水上观光
+- 🛍️ 心斋桥购物
+
+### D8 — 返程
+
+- ✈️ 关西机场返程
+
+> 💡 提示：买 JR Pass 更划算。
+
+*旅途愉快！*`,
+  },
+  {
+    title: "成都周末美食之旅",
+    destination: "成都",
+    startDate: "2026-07-20",
+    endDate: "2026-07-21",
+    budget: "1500",
+    status: "completed",
+    notes: "火锅、串串、熊猫基地",
+    markdown: `# 成都周末美食之旅 · 2日闪游
+> 巴适得板，安逸得喊
+
+---
+
+## 行程简介
+
+**出行人数：** 2人
+**总预算：** ¥1500/人
+**关键词：** 🐼 熊猫 · 火锅 · 宽窄巷子
+
+---
+
+## Day 1
+
+### 上午 — 熊猫基地
+
+- 🐼 成都大熊猫繁育研究基地
+- ⏰ 建议 8:00 前入园
+
+### 下午 — 宽窄巷子
+
+- 🛤️ 宽巷子老成都生活
+- 🍵 窄巷子茶馆
+- 🎭 井巷子文创
+
+### 晚上 — 火锅之夜
+
+- 🔥 小龙坎/蜀九香
+- 🌶️ 必点毛肚、黄喉、鹅肠
+- 🍺 唯怡豆奶
+
+---
+
+## Day 2
+
+### 上午 — 早茶+春熙路
+
+- 🥟 龙抄手、钟水饺、赖汤圆
+
+### 下午 — 返程
+
+> 💡 建议：火锅店线上提前取号。
+
+*成都，一座来了就不想走的城市。*`,
+  },
+]
+
+function useTpl(idx) {
+  const t = templateList[idx]
+  newPlan.title = t.title
+  newPlan.destination = t.destination
+  newPlan.startDate = t.startDate
+  newPlan.endDate = t.endDate
+  newPlan.budget = t.budget
+  newPlan.status = t.status
+  newPlan.notes = t.notes
+  newPlan.markdown = t.markdown
+  createMode.value = "md"
+  uni.showToast({ title: "已加载模板", icon: "success" })
+}
+
+// ========== 加载 / 持久化 ==========
+const STORAGE_KEY = "travelPlans"
+
+const tianjinPlan = {
+  id: "static-tianjin",
+  title: "天津+北京+滨海新区",
+  destination: "天津/北京",
+  startDate: "2026-07-16",
+  endDate: "2026-07-20",
+  budget: "",
+  status: "planning",
+  notes: "真实出行计划 · 5天4晚 (天津+滨海新区+北京)",
+  contentMarkdown: tianjinPlanMarkdown,
+  fromStatic: true,
+}
+
+function loadPlans() {
+  // 1. 从 storage 加载
+  let stored = []
+  try {
+    const raw = uni.getStorageSync(STORAGE_KEY)
+    if (raw) stored = JSON.parse(raw)
+  } catch (e) { /* empty */ }
+
+  // 2. 天津计划始终在最前面（用户真实计划优先级最高）
+  if (!stored.find((p) => p.id === "static-tianjin")) {
+    stored.unshift(tianjinPlan)
+  }
+
+  // 3. 如果 storage 为空，塞入模板示例
+  if (stored.length === 0) {
+    stored = [tianjinPlan, ...templateList.map((t, i) => ({
+      id: "tpl-" + i,
+      ...t,
+      fromStatic: false,
+    }))]
+  }
+
+  plans.value = stored
+  uni.setStorageSync(STORAGE_KEY, JSON.stringify(stored))
+}
+
+function savePlans() {
+  uni.setStorageSync(STORAGE_KEY, JSON.stringify(plans.value))
+}
+
+// ========== 操作 ==========
+function viewPlan(plan) {
+  currentPlan.value = plan
+  view.value = "detail"
+}
+
+function goBack() {
+  if (view.value === "detail") {
+    view.value = "list"
+    currentPlan.value = null
+  } else {
+    uni.navigateBack()
+  }
+}
+
+function openCreate() {
+  Object.assign(newPlan, {
+    title: "",
+    destination: "",
+    startDate: "",
+    endDate: "",
+    budget: "",
+    status: "planning",
+    markdown: defaultMarkdown(),
+    notes: "",
+  })
+  createMode.value = "input"
+  showCreate.value = true
+}
+
+function closeCreate() {
+  showCreate.value = false
+}
+
+function handleSavePlan() {
+  if (!newPlan.title.trim()) {
+    uni.showToast({ title: "请填写计划标题", icon: "none" })
+    return
+  }
+  if (!newPlan.markdown.trim()) {
+    uni.showToast({ title: "请填写 Markdown 内容", icon: "none" })
+    return
+  }
+  const plan = {
+    id: "user-" + Date.now(),
+    title: newPlan.title,
+    destination: newPlan.destination || "未填写",
+    startDate: newPlan.startDate || "",
+    endDate: newPlan.endDate || "",
+    budget: newPlan.budget || "",
+    status: newPlan.status,
+    notes: newPlan.notes || "",
+    contentMarkdown: newPlan.markdown,
+    fromStatic: false,
+  }
+  plans.value.unshift(plan)
+  savePlans()
+  showCreate.value = false
+  uni.showToast({ title: "保存成功", icon: "success" })
+}
+
+onMounted(() => {
+  if (!uni.getStorageSync("isLoggedIn")) {
+    uni.reLaunch({ url: "/pages/login/login" })
+    return
+  }
+  loadPlans()
+})
+</script>
+
+<style lang="scss" scoped>
+.travel-page {
+  min-height: 100vh;
+  background: #f5f7fb;
+}
+
+/* ====== 自定义导航 ====== */
+.custom-nav {
+  background: linear-gradient(135deg, #4a6cf7 0%, #7c3aed 100%);
+  width: 100%;
+}
+.nav-row {
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 24rpx;
+  position: relative;
+}
+.nav-icon {
+  width: 72rpx;
+  text-align: center;
+  font-size: 48rpx;
+  color: #fff;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.nav-icon.empty { visibility: hidden; }
+.nav-icon.add { font-size: 44rpx; }
+.nav-title {
+  flex: 1;
+  text-align: center;
+  font-size: 32rpx;
+  color: #fff;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ====== 列表视图 ====== */
+.list-view {
+  padding: 24rpx;
+}
+
+.page-banner {
+  padding: 40rpx 32rpx;
+  margin-bottom: 24rpx;
+}
+.banner-title {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #1a1a1a;
+  display: block;
+}
+.banner-desc {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 8rpx;
+  display: block;
+}
+
+.plan-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+.plan-card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 28rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+  transition: transform 0.15s;
+}
+.plan-card:active { transform: scale(0.98); }
+
+.card-row1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+.plan-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1a1a1a;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.status {
+  font-size: 22rpx;
+  padding: 4rpx 16rpx;
+  border-radius: 16rpx;
+  margin-left: 16rpx;
+  flex-shrink: 0;
+}
+.status.planning { background: #fff3e0; color: #f57c00; }
+.status.ongoing  { background: #e3f2fd; color: #1976d2; }
+.status.completed { background: #e8f5e9; color: #388e3c; }
+
+.card-row2 {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  margin-bottom: 12rpx;
+  flex-wrap: wrap;
+}
+.meta {
+  font-size: 24rpx;
+  color: #888;
+}
+
+.card-row3 {
+  margin-bottom: 16rpx;
+}
+.preview {
+  font-size: 24rpx;
+  color: #aaa;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.card-row4 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 2rpx solid #f5f5f5;
+  padding-top: 12rpx;
+}
+.tag {
+  font-size: 22rpx;
+  color: #4a6cf7;
+}
+.view-link {
+  font-size: 24rpx;
+  color: #4a6cf7;
+}
+
+/* 空 */
+.empty {
+  text-align: center;
+  padding: 160rpx 40rpx;
+}
+.empty-emoji { font-size: 100rpx; display: block; }
+.empty-title { font-size: 30rpx; font-weight: 600; color: #333; display: block

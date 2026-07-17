@@ -1,0 +1,157 @@
+  }
+    },
+  })
+  // #endif
+  // #ifndef MP-WEIXIN
+  uni.showToast({ title: "仅微信小程序支持导入", icon: "none" })
+  // #endif
+}
+
+function onSyntaxTap(e) {
+  const sym = e.currentTarget.dataset.sym;
+  note.content = (note.content || "") + "" + sym + (sym === "**" || sym === "*" ? sym : "");
+  isPreview.value = false;
+  markDirty();
+}
+
+function onMdTap(e) {
+  // rich-text 点击，目前仅支持展示
+}
+
+function handleSave() {
+  const notes = loadNotes()
+  upsertNote(notes, {
+    ...note,
+    title: note.title.trim() || "无标题",
+  })
+  saveNotes(notes)
+  isDirty.value = false
+  uni.showToast({ title: "已保存", icon: "success" })
+  // 返回列表
+  setTimeout(() => { uni.navigateBack() }, 600)
+}
+
+function handleBack() {
+  if (isDirty.value) {
+    uni.showModal({
+      title: "返回",
+      content: "有未保存的修改，确定离开？",
+      success: (r) => {
+        if (r.confirm) uni.navigateBack()
+        else handleSave()
+      },
+    })
+  } else {
+    uni.navigateBack()
+  }
+}
+
+function autoSave() {
+  if (!isDirty.value) return
+  const notes = loadNotes()
+  upsertNote(notes, {
+    ...note,
+    title: note.title.trim() || "无标题",
+  })
+  saveNotes(notes)
+  isDirty.value = false
+}
+
+onMounted(() => {
+  if (!uni.getStorageSync("isLoggedIn")) {
+    uni.reLaunch({ url: "/pages/login/login" })
+    return
+  }
+  const pages = getCurrentPages()
+  const cur = pages[pages.length - 1]
+  const query = cur.options || {}
+  if (query.id) {
+    const notes = loadNotes()
+    const found = notes.find((n) => n.id === query.id)
+    if (found) {
+      Object.assign(note, found)
+      isNew.value = false
+      isDirty.value = false
+    }
+  }
+})
+
+onBeforeUnmount(() => {
+  // 离开前自动保存
+  if (isDirty.value && note.content) {
+    const notes = loadNotes()
+    upsertNote(notes, {
+      ...note,
+      title: note.title.trim() || "无标题",
+    })
+    saveNotes(notes)
+  }
+})
+</script>
+
+<style lang="scss" scoped>
+.detail-page {
+  min-height: 100vh;
+  background: #f5f7fb;
+  padding-bottom: 140rpx;
+}
+
+/* 自定义导航 */
+.custom-nav {
+  background: linear-gradient(135deg, #4a6cf7 0%, #7c3aed 100%);
+  width: 100%;
+}
+.nav-row {
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 32rpx;
+}
+.nav-title {
+  flex: 1;
+  font-size: 34rpx;
+  color: #fff;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.nav-icon {
+  width: 64rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  text-align: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+.nav-icon.add { font-size: 40rpx; }
+
+/* 文档元信息区 */
+.doc-meta {
+  padding: 24rpx 32rpx 16rpx;
+  background: #fff;
+  margin: 0 24rpx;
+  border-radius: 0 0 24rpx 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+}
+.meta-title-wrap {
+  margin-bottom: 16rpx;
+}
+.meta-title-input {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1a1a1a;
+  height: 64rpx;
+  width: 100%;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+.meta-actions {
+  display: flex;
+  gap: 12rpx;
+  margin-top: 16rpx;
+  flex-wrap: wrap;
+}
+.meta-btn {

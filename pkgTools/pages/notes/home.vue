@@ -2,7 +2,7 @@
   <view class="notes-page">
     <!-- 自定义导航 -->
     <view class="custom-nav" :style="{ paddingTop: statusBarHeight + 'px' }">
-      <view class="nav-row">
+      <view class="nav-row" :style="{ paddingRight: navPaddingRight + 'px' }">
         <text class="nav-icon" @click="goBack">‹</text>
         <text class="nav-title">📝 我的笔记</text>
       </view>
@@ -70,8 +70,13 @@
       <text class="empty-title">
         {{ searchText ? '没找到相关笔记' : (activeTag ? '这个标签下没内容' : '还没有笔记') }}
       </text>
-      <text class="empty-desc">点击右上角 + 开始记录灵感</text>
+      <text class="empty-desc">点击右下角 + 开始记录灵感</text>
       <view v-if="!searchText && !activeTag" class="empty-btn" @click="createNote">+ 新建笔记</view>
+    </view>
+
+    <!-- 悬浮新增按钮 -->
+    <view class="fab" @click="createNote">
+      <text class="fab-icon">+</text>
     </view>
   </view>
 </template>
@@ -81,6 +86,17 @@ import { ref, computed, onMounted } from "vue"
 import { loadNotes, saveNotes, makeExcerpt, formatDate, getTags } from "@/utils/notes-store.js"
 
 const statusBarHeight = uni.getSystemInfoSync().statusBarHeight || 20
+
+// 微信小程序：导航栏右侧留出胶囊按钮的空间，避免 + 按钮被遮挡
+const navPaddingRight = ref(32)
+try {
+  // #ifdef MP-WEIXIN
+  const menu = wx.getMenuButtonBoundingClientRect()
+  if (menu && menu.left) {
+    navPaddingRight.value = (uni.getSystemInfoSync().windowWidth - menu.left) + 12
+  }
+  // #endif
+} catch (e) { /* 非微信环境使用默认值 */ }
 
 const goBack = () => { uni.navigateBack() }
 const notes = ref([])
@@ -181,6 +197,7 @@ onMounted(() => {
   padding: 0 32rpx;
 }
 .nav-title {
+  flex: 1;
   font-size: 34rpx;
   color: #fff;
   font-weight: 600;
@@ -195,8 +212,9 @@ onMounted(() => {
   color: #fff;
   font-size: 32rpx;
   font-weight: 700;
+  flex-shrink: 0;
 }
-.nav-icon.add { font-size: 40rpx; }
+.nav-icon.add { font-size: 40rpx; margin-left: 12rpx; }
 
 
 /* 搜索 */
@@ -341,5 +359,29 @@ onMounted(() => {
   color: #fff;
   font-size: 26rpx;
   border-radius: 32rpx;
+}
+
+/* 悬浮新增按钮 */
+.fab {
+  position: fixed;
+  right: 40rpx;
+  bottom: calc(60rpx + env(safe-area-inset-bottom));
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4a6cf7, #7c3aed);
+  box-shadow: 0 8rpx 24rpx rgba(74, 108, 247, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+  transition: transform 0.15s;
+}
+.fab:active { transform: scale(0.9); }
+.fab-icon {
+  font-size: 56rpx;
+  color: #fff;
+  font-weight: 300;
+  line-height: 1;
 }
 </style>

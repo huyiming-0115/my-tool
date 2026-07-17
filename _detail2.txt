@@ -1,0 +1,106 @@
+text class="bb-t">斜体</text>
+      </view>
+      <view class="bb-btn" data-sym="- " @click="onSyntaxTap">
+        <text class="bb-icon">≡</text><text class="bb-t">列表</text>
+      </view>
+      <view class="bb-btn" data-sym="> " @click="onSyntaxTap">
+        <text class="bb-icon">❝</text><text class="bb-t">引用</text>
+      </view>
+      <view class="bb-btn" data-sym="---\n" @click="onSyntaxTap">
+        <text class="bb-icon">—</text><text class="bb-t">分隔</text>
+      </view>
+    </view>
+</view>
+</template>
+
+<script setup>
+import { ref, computed, reactive, onMounted, onBeforeUnmount } from "vue"
+import { parseMarkdown } from "@/utils/markdown.js"
+import { loadNotes, saveNotes, upsertNote, createEmptyNote } from "@/utils/notes-store.js"
+
+const statusBarHeight = uni.getSystemInfoSync().statusBarHeight || 20
+
+// 微信小程序：导航栏右侧留出胶囊按钮空间，避免标题被遮挡
+const navPaddingRight = ref(32)
+try {
+  // #ifdef MP-WEIXIN
+  const menu = wx.getMenuButtonBoundingClientRect()
+  if (menu && menu.left) {
+    navPaddingRight.value = (uni.getSystemInfoSync().windowWidth - menu.left) + 12
+  }
+  // #endif
+} catch (e) { /* 非微信环境使用默认值 */ }
+
+const note = reactive(createEmptyNote())
+const isPreview = ref(false)
+const isDirty = ref(false)
+const tagInput = ref("")
+const isNew = ref(true)
+let editStartCursor = { selectionStart: 0, selectionEnd: 0 }
+
+const lineCount = computed(() => note.content.split("").length)
+const renderedNodes = computed(() => {
+  if (!note.content) return []
+  return parseMarkdown(note.content).nodes
+})
+
+function setView(v) {
+  isPreview.value = v === "preview"
+}
+
+function markDirty() {
+  isDirty.value = true
+}
+
+function addTag() {
+  const t = tagInput.value.trim().replace(/[#\s]/g, "")
+  if (t && !note.tags.includes(t) && note.tags.length < 5) {
+    note.tags.push(t)
+    markDirty()
+  }
+  tagInput.value = ""
+}
+
+function removeTag(i) {
+  note.tags.splice(i, 1)
+  markDirty()
+}
+
+function togglePin() {
+  note.pinned = !note.pinned
+  markDirty()
+  uni.showToast({ title: note.pinned ? "已置顶" : "取消置顶", icon: "none" })
+}
+
+function handleImport() {
+  // #ifdef MP-WEIXIN
+  wx.chooseMessageFile({
+    count: 1,
+    type: "file",
+    extension: ["md", "markdown", "txt"],
+    success(res) {
+      const file = res.tempFiles && res.tempFiles[0]
+      if (!file) return
+      const fs = uni.getFileSystemManager()
+      fs.readFile({
+        filePath: file.path,
+        encoding: "utf-8",
+        success(r) {
+          note.content = r.data || ""
+          // 用文件名作为标题（去掉扩展名）
+          const baseName = (file.name || "").replace(/\.(md|markdown|txt)$/i, "")
+          if (baseName) note.title = baseName
+          isPreview.value = false
+          markDirty()
+          uni.showToast({ title: "导入成功", icon: "success" })
+        },
+        fail() {
+          uni.showToast({ title: "读取文件失败", icon: "none" })
+        },
+      })
+    },
+    fail(err) {
+      // 用户取消时不提示
+      if (err && err.errMsg && err.errMsg.indexOf("cancel") === -1) {
+        uni.showToast({ title: "选择文件失败", icon: "none" })
+    
