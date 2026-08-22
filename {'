@@ -1,0 +1,1 @@
+new1 = old1 + chr(10) + 'const importHint = computed(() = + chr(10) + '  // #ifdef MP-WEIXIN' + chr(10) + '  return \\" WeChat: receive file in chat "first\' + chr(10) + '  // #endif' + chr(10) + '  // #ifndef MP-WEIXIN' + chr(10) + '  return \Supports" .md / ".txt\' + chr(10) + '  // #endif' + chr(10) + '})' 

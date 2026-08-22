@@ -70,7 +70,7 @@
     <view v-else class="preview-wrap">
       <view class="mode-tip">实时预览</view>
       <view class="md-wrap">
-        <rich-text :nodes="renderedNodes" @itemclick="onMdTap"></rich-text>
+        <mp-html :content="renderedHtml" container-style="padding:0" />
       </view>
     </view>
 
@@ -100,7 +100,7 @@
 
 <script setup>
 import { ref, computed, reactive, onMounted, onBeforeUnmount } from "vue"
-import { parseMarkdown } from "@/utils/markdown.js"
+import { marked } from "marked"
 import { loadNotes, saveNotes, upsertNote, createEmptyNote } from "@/utils/notes-store.js"
 
 const statusBarHeight = uni.getSystemInfoSync().statusBarHeight || 20
@@ -124,9 +124,9 @@ const isNew = ref(true)
 let editStartCursor = { selectionStart: 0, selectionEnd: 0 }
 
 const lineCount = computed(() => note.content.split("").length)
-const renderedNodes = computed(() => {
+const renderedHtml = computed(() => {
   if (!note.content) return []
-  return parseMarkdown(note.content).nodes
+  return marked.parse(note.content)
 })
 
 function setView(v) {
@@ -484,3 +484,6 @@ onBeforeUnmount(() => {
   color: #999;
 }
 </style>
+
+
+

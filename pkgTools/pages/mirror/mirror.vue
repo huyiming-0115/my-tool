@@ -1,0 +1,7 @@
+<template><view class="page"><view class="custom-nav" :style="{ paddingTop: statusBarHeight + 'px' }"><view class="nav-row"><text class="nav-icon" @click="goBack">←</text><text class="nav-title">镜子</text><text class="nav-icon empty"> </text></view></view><view class="content"><view class="mirror-area"><camera class="mirror-cam" device-position="front" flash="off" @error="onError"></camera></view><view class="mirror-tip" v-if="!cameraOk">无法访问摄像头</view></view></view></template><script setup>import { ref, onMounted } from "vue"
+const statusBarHeight = uni.getSystemInfoSync().statusBarHeight || 20
+const cameraOk = ref(true)
+function onError() { cameraOk.value = false }
+function goBack() { uni.navigateBack() }
+onMounted(function() { if (!uni.getStorageSync("isLoggedIn")) { uni.reLaunch({ url: "/pages/login/login" }); return } })
+</script><style scoped>.page{min-height:100vh;background:#2d3436}.custom-nav{background:linear-gradient(135deg,#636e72,#b2bec3);width:100%}.nav-row{height:88rpx;display:flex;align-items:center;padding:0 24rpx}.nav-icon{width:72rpx;text-align:center;font-size:48rpx;color:#fff;font-weight:700;flex-shrink:0}.nav-icon.empty{visibility:hidden}.nav-title{flex:1;text-align:center;font-size:32rpx;color:#fff;font-weight:600}.content{padding:24rpx}.mirror-area{width:100%;height:800rpx;border-radius:20rpx;overflow:hidden}.mirror-cam{width:100%;height:100%}.mirror-tip{text-align:center;padding:40rpx;font-size:26rpx;color:#999}</style>

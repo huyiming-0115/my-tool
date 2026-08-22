@@ -1,47 +1,888 @@
 {
-  "pages": [
-    {
-      "path": "pages/index/index",
-      "style": { "navigationBarTitleText": "加载中" }
-    },
-    {
-      "path": "pages/login/login",
-      "style": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }
-    },
-    {
-      "path": "pages/home/home",
-      "style": { "navigationBarTitleText": "我的工具箱" }
-    },
-    {
-      "path": "pages/my/my",
-      "style": { "navigationStyle": "custom", "navigationBarTextStyle": "white" }
-    }
-  ],
+  "uniIdRouter": {},
   "subPackages": [
     {
       "root": "pkgTools",
       "pages": [
-        { "path": "pages/notes/home", "style": { "navigationStyle": "custom" } },
-        { "path": "pages/notes/detail", "style": { "navigationStyle": "custom" } },
-        { "path": "pages/travel/travel", "style": { "navigationStyle": "custom" } }
+        {
+          "path": "pages/bloodtype/bloodtype",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/armeasure/armeasure",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/imgcompress/imgcompress",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/ipquery/ipquery",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/flashlight/flashlight",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/mirror/mirror",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/drawingboard/drawingboard",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/readingspeed/readingspeed",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/typingspeed/typingspeed",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/pinyin/pinyin",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/morsecode/morsecode",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/hashcalc/hashcalc",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/cronparser/cronparser",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/uuidgen/uuidgen",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/pedometer/pedometer",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/heartrate/heartrate",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/decibel/decibel",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/spiritlevel/spiritlevel",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/shakecounter/shakecounter",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/scicalc/scicalc",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/metronome/metronome",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/tarot/tarot",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/coinflip/coinflip",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/mdpreview/mdpreview",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/caseconvert/caseconvert",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/zhconvert/zhconvert",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/calendar/calendar",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/timestamp/timestamp",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/worldclock/worldclock",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/qrscan/qrscan",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/colorpicker/colorpicker",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/regextest/regextest",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/baseconvert/baseconvert",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/compass/compass",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/dice/dice",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/luckywheel/luckywheel",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/urlencode/urlencode",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/jsonfmt/jsonfmt",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/base64/base64",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/splitbill/splitbill",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/pricecompare/pricecompare",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/textcount/textcount",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/datecalc/datecalc",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/loan/loan",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/picker/picker",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/calculator/calculator",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/qrcode/qrcode",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/imgfilter/imgfilter",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/pomodoro/pomodoro",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/notes/home",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/notes/detail",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/travel/travel",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/altitude/altitude",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/weather/weather",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/currency/currency",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/calorie/calorie",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/unit/unit",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/password/password",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/countdown/countdown",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/lottery/lottery",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/bmi/bmi",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/packing/packing",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/todo/todo",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/workout/workout",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/fatloss/fatloss",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/water/water",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/expense/expense",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/habit/habit",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/running/running",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/sleep/sleep",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/food/food",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/study/study",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/diary/diary",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/period/period",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/shopping/shopping",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/contact/contact",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/movie/movie",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/2048/2048",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/anglecalc/anglecalc",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/blackjack/blackjack",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/colorpalette/colorpalette",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/guessnum/guessnum",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/imgcrop/imgcrop",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/imgformat/imgformat",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/imgmerge/imgmerge",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/imgstyle/imgstyle",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/slopecalc/slopecalc",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/tempconvert/tempconvert",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/tictactoe/tictactoe",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/watermark/watermark",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/pdfmerge/pdfmerge",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/ocr/ocr",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/fileencrypt/fileencrypt",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/textencrypt/textencrypt",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/passwordmanager/passwordmanager",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/speedtest/speedtest",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/dnslookup/dnslookup",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/urlshortener/urlshortener",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/taxcalc/taxcalc",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/compoundinterest/compoundinterest",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/mortgagecalc/mortgagecalc",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/matrixcalc/matrixcalc",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/equationsolver/equationsolver",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/statistics/statistics",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/audioconvert/audioconvert",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/recorder/recorder",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/snake/snake",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/tetris/tetris",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/sudoku/sudoku",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/memory/memory",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/jsondiff/jsondiff",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/colorconvert/colorconvert",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/qrstyle/qrstyle",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/videotogif/videotogif",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/namegenerator/namegenerator",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "pages/barcode/barcode",
+          "style": {
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/whattoeat/whattoeat"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/familytree/familytree"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/ledscroll/ledscroll"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/socialinsurance/socialinsurance"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/electricitycalc/electricitycalc"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/cncapital/cncapital"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/periodictable/periodictable"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/idiom/idiom"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/todayinhistory/todayinhistory"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/flashcard/flashcard"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/dailypoem/dailypoem"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/translator/translator"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/cardvalidate/cardvalidate"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/imagetobase64/imagetobase64"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/csvparser/csvparser"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/yamljson/yamljson"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/jwtparser/jwtparser"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/colorblind/colorblind"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/decisionwheel/decisionwheel"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/runningpace/runningpace"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/tts/tts"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/vibration/vibration"
+        }
       ]
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTitleText": "笔记工具箱",
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "加载中"
+      }
+    },
+    {
+      "path": "pages/login/login",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/home/home",
+      "style": {
+        "navigationBarTitleText": "我的工具箱"
+      }
+    },
+    {
+      "path": "pages/my/my",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTextStyle": "white"
+      }
     }
   ],
   "tabBar": {
     "color": "#999999",
     "selectedColor": "#4a6cf7",
-    "backgroundColor": "#ffffff",
     "borderStyle": "white",
     "list": [
-      { "pagePath": "pages/home/home", "text": "首页" },
-      { "pagePath": "pages/my/my", "text": "我的" }
-    ]
-  },
-  "globalStyle": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "笔记工具箱",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
-  },
-  "uniIdRouter": {}
+      {
+        "text": "首页",
+        "pagePath": "pages/home/home"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/my/my"
+      }
+    ],
+    "backgroundColor": "#ffffff"
+  }
 }
