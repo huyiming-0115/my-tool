@@ -1,17 +1,23 @@
+
 <template>
   <view class="page">
     <view class="custom-nav" :style="{ paddingTop: statusBarHeight + 'px' }">
-      <view class="nav-row"><text class="nav-icon" @click="goBack">\u2190</text><text class="nav-title">\u94f6\u884c\u5361\u6821\u9a8c</text><text class="nav-icon empty"> </text></view>
+      <view class="nav-row"><text class="nav-icon" @click="goBack">←</text><text class="nav-title">银行卡校验</text><text class="nav-icon empty"> </text></view>
     </view>
     <view class="content">
-      <view class="form-card"><text class="form-label">\u94f6\u884c\u5361\u53f7</text><input class="form-input" type="number" v-model="cardNo" placeholder="\u8f93\u5165\u5361\u53f7" maxlength="19" /></view>
-      <view class="calc-btn" @click="validate"><text>\u6821\u9a8c</text></view>
-      <view class="result-card" v-if="result">
-        <text class="result-label">\u6821\u9a8c\u7ed3\u679c</text>
-        <text class="result-valid" v-if="result.valid" style="color:#00b894;">\u2714 \u6709\u6548\u7684\u5361\u53f7</text>
-        <text class="result-valid" v-else style="color:#e17055;">\u2718 \u65e0\u6548\u7684\u5361\u53f7</text>
-        <text class="result-text">\u5361\u7c7b\u578b: {{ result.type }}</text>
-        <text class="result-text">\u4f4d\u6570: {{ cardNo.length }}</text>
+      <view class="cv-card">
+        <text class="cv-label">银行卡号</text>
+        <input class="cv-input" type="number" v-model="cardNumber" placeholder="请输入银行卡号" maxlength="19" />
+      </view>
+      <view class="cv-btn" @click="validate"><text>验证</text></view>
+      <view class="cv-result" v-if="validated">
+        <view class="cv-result-icon" :class="{valid: isValid, invalid: !isValid}">{{isValid ? '✓' : '✗'}}</view>
+        <text class="cv-result-text">{{resultText}}</text>
+        <view class="cv-card-type" v-if="cardType"><text>卡类型: {{cardType}}</text></view>
+      </view>
+      <view class="cv-info">
+        <text class="cv-info-title">Luhn算法说明</text>
+        <text class="cv-info-text">Luhn算法（模10算法）是一种简单的校验和公式，用于验证银行卡号、信用卡号等数字标识符的有效性。</text>
       </view>
     </view>
   </view>
@@ -19,48 +25,71 @@
 <script setup>
 import { ref, onMounted } from "vue"
 const statusBarHeight = uni.getSystemInfoSync().statusBarHeight || 20
-const cardNo = ref("")
-const result = ref(null)
+const cardNumber = ref("")
+const isValid = ref(false)
+const validated = ref(false)
+const resultText = ref("")
+const cardType = ref("")
 function luhnCheck(num) {
-  let sum = 0, alt = false
-  for (let i = num.length - 1; i >= 0; i--) {
-    let n = parseInt(num[i])
-    if (alt) { n *= 2; if (n > 9) n -= 9 }
-    sum += n; alt = !alt
+  var sum = 0
+  var alternate = false
+  for (var i = num.length - 1; i >= 0; i--) {
+    var n = parseInt(num[i])
+    if (alternate) {
+      n *= 2
+      if (n > 9) n -= 9
+    }
+    sum += n
+    alternate = !alternate
   }
   return sum % 10 === 0
 }
 function getCardType(num) {
   if (/^4/.test(num)) return "Visa"
   if (/^5[1-5]/.test(num)) return "MasterCard"
-  if (/^62/.test(num)) return "\u94f6\u8054"
-  if (/^9558/.test(num)) return "\u5de5\u5546\u94f6\u884c"
-  if (/^6222|^6223/.test(num)) return "\u4e2d\u65b9\u94f6\u884c"
-  return "\u672a\u77e5"
+  if (/^62/.test(num)) return "银联"
+  if (/^3[47]/.test(num)) return "American Express"
+  if (/^35/.test(num)) return "JCB"
+  return "未知"
 }
 function validate() {
-  const num = cardNo.value.replace(/\s/g, "")
-  if (!num || num.length < 13) { uni.showToast({ title: "\u8bf7\u8f93\u5165\u6709\u6548\u5361\u53f7", icon: "none" }); return }
-  result.value = { valid: luhnCheck(num), type: getCardType(num) }
+  var num = cardNumber.value.replace(/\s/g, "")
+  if (!num || num.length < 13) {
+    validated.value = true
+    isValid.value = false
+    resultText.value = "请输入有效的银行卡号"
+    cardType.value = ""
+    return
+  }
+  isValid.value = luhnCheck(num)
+  cardType.value = getCardType(num)
+  resultText.value = isValid.value ? "卡号有效（Luhn校验通过）" : "卡号无效（Luhn校验失败）"
+  validated.value = true
 }
 function goBack() { uni.navigateBack() }
 onMounted(function() { if (!uni.getStorageSync("isLoggedIn")) { uni.reLaunch({ url: "/pages/login/login" }); return } })
 </script>
 <style scoped>
-.page { min-height: 100vh; background: linear-gradient(135deg, #f093fb, #f5576c); }
-.custom-nav { background: linear-gradient(135deg, #e84393, #fd79a8); width: 100%; }
+.page { min-height: 100vh; background: linear-gradient(135deg, #11998e, #38ef7d); }
+.custom-nav { background: linear-gradient(135deg, #11998e, #38ef7d); width: 100%; }
 .nav-row { height: 88rpx; display: flex; align-items: center; padding: 0 24rpx; }
 .nav-icon { width: 72rpx; text-align: center; font-size: 48rpx; color: #fff; font-weight: 700; flex-shrink: 0; }
 .nav-icon.empty { visibility: hidden; }
 .nav-title { flex: 1; text-align: center; font-size: 32rpx; color: #fff; font-weight: 600; }
-.content { padding: 40rpx; }
-.form-card { background: #fff; border-radius: 20rpx; padding: 24rpx; margin-bottom: 20rpx; }
-.form-label { font-size: 26rpx; color: #666; display: block; margin-bottom: 12rpx; }
-.form-input { font-size: 32rpx; color: #333; font-weight: 600; letter-spacing: 4rpx; }
-.calc-btn { background: linear-gradient(135deg, #e84393, #fd79a8); border-radius: 16rpx; padding: 24rpx; text-align: center; margin: 32rpx 0; }
-.calc-btn text { color: #fff; font-size: 30rpx; font-weight: 600; }
-.result-card { background: #fff; border-radius: 24rpx; padding: 32rpx; text-align: center; }
-.result-label { font-size: 24rpx; color: #999; display: block; margin-bottom: 12rpx; }
-.result-valid { font-size: 32rpx; font-weight: 700; display: block; margin-bottom: 16rpx; }
-.result-text { font-size: 26rpx; color: #666; display: block; padding: 4rpx 0; }
+.content { padding: 32rpx; }
+.cv-card { background: rgba(255,255,255,0.2); border-radius: 20rpx; padding: 24rpx; margin-bottom: 24rpx; }
+.cv-label { color: rgba(255,255,255,0.8); font-size: 26rpx; display: block; margin-bottom: 12rpx; }
+.cv-input { background: rgba(255,255,255,0.3); border-radius: 12rpx; padding: 20rpx 24rpx; font-size: 36rpx; color: #fff; font-weight: 600; letter-spacing: 4rpx; }
+.cv-btn { background: #fff; border-radius: 16rpx; padding: 24rpx; text-align: center; margin-bottom: 24rpx; }
+.cv-btn text { color: #11998e; font-size: 32rpx; font-weight: 700; }
+.cv-result { background: rgba(255,255,255,0.2); border-radius: 20rpx; padding: 32rpx; text-align: center; margin-bottom: 24rpx; }
+.cv-result-icon { width: 100rpx; height: 100rpx; border-radius: 50%; margin: 0 auto 16rpx; display: flex; align-items: center; justify-content: center; font-size: 48rpx; color: #fff; }
+.cv-result-icon.valid { background: rgba(255,255,255,0.3); }
+.cv-result-icon.invalid { background: rgba(255,0,0,0.3); }
+.cv-result-text { color: #fff; font-size: 30rpx; font-weight: 600; display: block; }
+.cv-card-type { margin-top: 12rpx; }
+.cv-card-type text { color: rgba(255,255,255,0.7); font-size: 26rpx; }
+.cv-info { background: rgba(255,255,255,0.1); border-radius: 20rpx; padding: 24rpx; }
+.cv-info-title { color: rgba(255,255,255,0.8); font-size: 26rpx; font-weight: 600; display: block; margin-bottom: 12rpx; }
+.cv-info-text { color: rgba(255,255,255,0.6); font-size: 24rpx; line-height: 1.6; }
 </style>

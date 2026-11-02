@@ -831,6 +831,186 @@
             "navigationStyle": "custom"
           },
           "path": "pages/vibration/vibration"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/currencyconverter/currencyconverter"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/passwordgenerator/passwordgenerator"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/bodyfitness/bodyfitness"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/markdowneditor/markdowneditor"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/agecalculator/agecalculator"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/colortool/colortool"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/photocollage/photocollage"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/randompicker/randompicker"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/periodtracker/periodtracker"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/tipcalculator/tipcalculator"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/romannumeral/romannumeral"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/phonequery/phonequery"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/jsonpath/jsonpath"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/sqlformat/sqlformat"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/apitest/apitest"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/randomdata/randomdata"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/vocabtest/vocabtest"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/mathpractice/mathpractice"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/idiomchain/idiomchain"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/capitalquiz/capitalquiz"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/storygen/storygen"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/asciiart/asciiart"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/waterremind/waterremind"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/meditation/meditation"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/stretching/stretching"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/runningroute/runningroute"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/wordcloud/wordcloud"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/poster/poster"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/blessing/blessing"
+        },
+        {
+          "style": {
+            "navigationStyle": "custom"
+          },
+          "path": "pages/couplet/couplet"
         }
       ]
     }
